@@ -28,14 +28,21 @@ def load_json(name):
         return json.loads(fj.read())
 
 
-def get_book_list(url):
+# _type 来自网站 1:落霞  2：镇魂
+def get_book_list(url, _type):
     chapter_dict = dict()
     # 默读 主页，获取每章链接
     res = requests.get(url, verify=False)
     soup = BeautifulSoup(res.text, 'lxml')
-    book_list_div = soup.find("div", {"class": "book-list"})
     # book_list_div = soup.find_all("div", class_="stylelistrow")
-    list_chapter = book_list_div.findAll('li')
+    if 1 == _type:
+        # 落霞 www.luoxia.com
+        book_list_div = soup.find("div", {"class": "book-list"})
+        list_chapter = book_list_div.findAll('li')
+    elif 2 == _type:
+        # 镇魂 www.zhenhunxiaoshuo.com/
+        book_list_div = soup.find("div", {"class": "excerpts"})
+        list_chapter = book_list_div.findAll('article')
     for chapter in list_chapter:
         try:
             chapter_url = chapter.find('a')['href']
@@ -51,12 +58,17 @@ def get_book_list(url):
     return chapter_dict
 
 
-def get_articles(url):
+def get_articles(url, _type):
     contents = []
     # 默读 主页，获取每章链接
     res = requests.get(url, verify=False)
     soup = BeautifulSoup(res.text, 'lxml')
-    article = soup.find('div', {'id': 'nr1'})
+    if 1 == _type:
+        # 落霞 www.luoxia.com
+        article = soup.find('div', {'id': 'nr1'})
+    elif 2 == _type:
+        # 镇魂 www.zhenhunxiaoshuo.com/
+        article = soup.find('article', {'class': 'article-content'})
     content_list = article.findAll('p')
     for content in content_list:
         contents.append(content.text)
