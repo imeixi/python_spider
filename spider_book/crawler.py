@@ -3,7 +3,6 @@
 
 import requests
 from bs4 import BeautifulSoup
-import time
 import pickle
 import json
 
@@ -62,27 +61,4 @@ def get_articles(url):
     for content in content_list:
         contents.append(content.text)
     return contents
-
-
-if __name__ == '__main__':
-    # main_url = 'https://www.luoxia.com/modu/'
-    # chapters = get_book_list(main_url)
-    # # save_obj(chapters, 'book_list')
-    # dict_to_json_write_file(chapters, 'book_list')
-    # print('Get chapters done .....\n')
-
-    # chapters = load_json('book_list')
-    chapters = load_obj('book_list')
-    print(chapters)
-
-    with open("modu.txt", "a") as f:
-        for key in chapters.keys():
-            f.write('\n' + key + '\n')
-            print('-' * 40 + key + '-' * 40 + '\n')
-            paragraphs = get_articles(chapters[key])
-            for line in paragraphs:
-                f.write(line + '\n')
-            print('-' * 40 + 'Write ' + key + 'Done' + '-' * 40 + '\n')
-            time.sleep(5)
-    email_handler
 
