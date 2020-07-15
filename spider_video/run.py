@@ -1,18 +1,22 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-from spider_video.crawler import get_classes_list, download_file_with_wget
+from spider_video.crawler import get_classes_list
 from spider_book.crawler import save_obj, load_obj
 from concurrent.futures import ThreadPoolExecutor
+from spider_video.download import download_file_with_requests_stream
 import os
 
 
 if __name__ == '__main__':
     target = 'https://alicache.bdschool.cn/public/bdschool/index/static/ali/w.html?grade=1&_d=2020/06/28'
+    # 获取class_tree
     # grade_dict = get_classes_tree(target)
     # dict_to_json_write_file(grade_dict, 'classes_tree')
+
+    # 获取class_tree
     # class_list = get_classes_list(url=target, grade_max=2, week_max=16)
-    # class_list = get_classes_list(url=target)
-    # save_obj(class_list, 'class_list')
+    class_list = get_classes_list(url=target)
+    save_obj(class_list, 'class_list')
 
     # 初始化线程池
     pool = ThreadPoolExecutor(128)
@@ -34,10 +38,11 @@ if __name__ == '__main__':
             os.makedirs(file_path)
 
         # 创建视频对应的描述文件
-        if desc_file_name:
-            with open(os.path.join(file_path, desc_file_name), 'w') as f:
-                f.write(class_content['teacher_desc'] + '\n')
-                if class_content['content_desc']:
-                    f.write(class_content['content_desc'])
+        if class_content['teacher_desc']:
+            if desc_file_name:
+                with open(os.path.join(file_path, desc_file_name), 'w') as f:
+                    f.write(class_content['teacher_desc'] + '\n')
+                    if class_content['content_desc']:
+                        f.write(class_content['content_desc'])
 
-        pool.submit(download_file_with_wget, url, os.path.join(file_path, file_name))
+        pool.submit(download_file_with_requests_stream, url, os.path.join(file_path, file_name))

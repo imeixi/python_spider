@@ -9,12 +9,16 @@ import copy
 def get_video_url(url):
     resp = requests.get(url, verify=False)
     video_url = re.findall(r'videourl="(.*?)\?', str(resp.text.encode('ISO-8859-1')))[0]
-    desc = re.findall(r'<p class="cprofile-content">(.*?)</p>', str(resp.text.encode('ISO-8859-1'), encoding='utf-8'))[0]
-    desc_list = str(desc).split('<br/>')
-    teacher_desc = desc_list[0].strip()
-    try:
-        content_desc = desc_list[1].strip()
-    except IndexError:
+    desc = re.findall(r'<p class="cprofile-content">(.*?)</p>', str(resp.text.encode('ISO-8859-1'), encoding='utf-8'))
+    if len(desc) > 1:
+        desc_list = str(desc[0]).split('<br/>')
+        teacher_desc = desc_list[0].strip()
+        try:
+            content_desc = desc_list[1].strip()
+        except IndexError:
+            content_desc = None
+    else:
+        teacher_desc = None
         content_desc = None
     return video_url, teacher_desc, content_desc
 
