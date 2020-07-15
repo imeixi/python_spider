@@ -9,7 +9,7 @@ import json
 
 def save_obj(obj, name):
     with open(name + '.pkl', 'wb') as fp:
-        pickle.dump(obj, fp, pickle.HIGHEST_PROTOCOL)
+        pickle.dump(obj, fp)
 
 
 def load_obj(name):
