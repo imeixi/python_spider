@@ -4,36 +4,6 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import copy
-import urllib3
-import wget
-
-
-def download_file_with_requests(url, filename):
-    res = requests.get(url)
-    with open(filename, "wb") as f:
-        f.write(res.content)
-
-
-# 通过流方式，下载大文件
-def download_file_with_requests_stream(url, filename):
-    res = requests.get(url, stream=True)
-    total_length = int(res.headers.get('content-length'))
-    print('-----文件大小：%d -------' % total_length)
-    with open(filename, 'wb') as f:
-        for chunk in res.iter_content(chunk_size=1024*1024):
-            f.write(chunk)
-
-
-def download_file_with_urllib3(url, filename):
-    f = urllib3.urlopen(url)
-    with open(filename, "wb") as code:
-        code.write(f.read())
-
-
-def download_file_with_wget(url, filename):
-    print(".........start download " + url + ".......")
-    wget.download(url, filename)
-    print(".........download end .......")
 
 
 def get_video_url(url):
