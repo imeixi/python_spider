@@ -13,7 +13,7 @@ if __name__ == '__main__':
     # 获取目录
     contents = get_book_list(tun_hai_url, web_type)
     # 保存目录列表到文件
-    contents_file = 'src/tun_hai_book_list'
+    contents_file = '../resource/book/tun_hai_book_list'
     save_obj(contents, contents_file)
     dict_to_json_write_file(contents, contents_file)
     print('Get contents done .....\n')
@@ -22,7 +22,7 @@ if __name__ == '__main__':
     # chapters = load_obj(contents_file)
     # print(chapters)
 
-    articles_file = 'src/tun_hai.txt'
+    articles_file = '../resource/book/tun_hai.txt'
     with open(articles_file, "a") as f:
         for key in contents.keys():
             f.write('\n' + key + '\n')
