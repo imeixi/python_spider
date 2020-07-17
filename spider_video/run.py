@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 from spider_book.crawler import load_obj
-from spider_video.crawler import convert_list
+from spider_video.crawler import convert_list, convert_excel_2_dict
 from common.excel_handler import write_list_2_excel
 import os
 
@@ -27,5 +27,11 @@ if __name__ == '__main__':
 
     filename = os.path.join(dir_path, 'classes_info.xlsx')
     print(filename)
-    write_list_2_excel(filename, class_list_2_excel)
+    # write_list_2_excel(filename, class_list_2_excel)
+
+    # 重命名文件
+    # step 1：video name 作为字典key， {grade, teacher_desc, content_desc, title}字典为value
+    video_name_dict = convert_excel_2_dict(filename)
+    # step 2：遍历文件夹，批量重命名文件
+    os.walk()
 

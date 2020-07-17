@@ -19,7 +19,7 @@ def write_list_2_excel(filename, data):
 def read_excel(filename):
     # 默认可读写，若有需要可以指定write_only和read_only为True
     # step 1：打开文件（定只读模式, 性能更好）[data_only=True 如果单元格式公式，将输出计算结果 eg：=AVERAGE(B2:B8)]
-    wb = load_workbook(filename, read_only=True, data_only=True)
+    # wb = load_workbook(filename, read_only=True, data_only=True)
     wb = load_workbook(filename)
 
     # step 2：获取sheet
@@ -231,6 +231,7 @@ def stats(filename):
 
 
 # 过滤 和 排序
+# 自动过滤器实际上并不过滤数据，仅用于可视化
 def filter_sort(filename):
     wb = Workbook()
     sheet = wb.active

@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import copy
+import openpyxl
 
 
 def get_video_url(url):
@@ -159,3 +160,22 @@ def convert_list(classes_list):
             first = True
         convert.append(list(class_dict.values()))
     return convert
+
+
+def convert_excel_2_dict(excel_file):
+    video_name_dict = dict()
+    wb = openpyxl.load_workbook(excel_file)
+    sheet = wb.active
+    # 自动过滤器实际上并不过滤数据，仅用于可视化
+    # sheet.auto_filter.add_filter_column(1, [1])
+    # sheet.auto_filter.add_filter_column(3, ['语文'])
+
+    # 表头
+    # grade, date, subject, url, teacher_desc, content_desc, title
+    for row in sheet.rows:
+        if row[2].value == '语文':
+            key = row[3].value.split('/')[-1]
+            video_name_dict[key] = {'grade': row[0].value, 'teacher_desc': row[4].value, 'content_desc': row[5].value,
+                                    'title': row[6].value}
+    wb.close()
+    return video_name_dict
