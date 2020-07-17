@@ -149,3 +149,13 @@ def get_classes_tree(url):
     print('-' * 40 + 'grade_dict 汇总结束' + '-' * 40 + '\n')
     return grade_dict
 
+
+def convert_list(classes_list):
+    convert = []
+    first = False
+    for class_dict in classes_list:
+        if not first:
+            convert.append(list(class_dict.keys()))
+            first = True
+        convert.append(list(class_dict.values()))
+    return convert

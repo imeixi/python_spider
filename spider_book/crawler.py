@@ -7,13 +7,14 @@ import pickle
 import json
 
 
-def save_obj(obj, name):
-    with open(name + '.pkl', 'wb') as fp:
+# 默认格式.pkl
+def save_obj(obj, filename):
+    with open(filename, 'wb') as fp:
         pickle.dump(obj, fp)
 
 
-def load_obj(name):
-    with open(name + '.pkl', 'rb') as fp:
+def load_obj(filename):
+    with open(filename, 'rb') as fp:
         return pickle.load(fp)
 
 
