@@ -33,8 +33,8 @@ if __name__ == '__main__':
     # step 1：video name 作为字典key， {grade, teacher_desc, content_desc, title}字典为value
     video_name_dict = convert_excel_2_dict(filename)
     # step 2：遍历文件夹，批量重命名文件
-    # video_dir = os.path.abspath('/Users/zhengaihua/Downloads/小学语文（下半学期）')
-    video_dir = os.path.abspath('/Users/zhengaihua/Downloads/一年级')
+    video_dir = os.path.abspath('/Users/zhengaihua/Downloads/小学语文（下半学期）')
+    # video_dir = os.path.abspath('/Users/zhengaihua/Downloads/一年级')
     for root, dirs, files in os.walk(top=video_dir, topdown=True):
         for file in files:
             if video_name_dict.keys().__contains__(file):
