@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
+import os.path
 
 import requests
 from bs4 import BeautifulSoup
 import pickle
 import json
+import time
 
 
 # 默认格式.pkl
@@ -32,8 +34,10 @@ def load_json(name):
 # _type 来自网站 1:落霞  2：镇魂
 def get_book_list(url, _type):
     chapter_dict = dict()
+    print("ready to get contents ..... ")
     # 默读 主页，获取每章链接
     res = requests.get(url, verify=False)
+    print("received a response ..... ")
     soup = BeautifulSoup(res.text, 'lxml')
     # book_list_div = soup.find_all("div", class_="stylelistrow")
     if 1 == _type:
@@ -62,7 +66,9 @@ def get_book_list(url, _type):
 def get_articles(url, _type):
     contents = []
     # 默读 主页，获取每章链接
+    print("ready to get articles ..... ")
     res = requests.get(url, verify=False)
+    print("received a response ..... ")
     soup = BeautifulSoup(res.text, 'lxml')
     if 1 == _type:
         # 落霞 www.luoxia.com
@@ -74,4 +80,31 @@ def get_articles(url, _type):
     for content in content_list:
         contents.append(content.text)
     return contents
+
+
+def execute(url, _type, save_path, book_name):
+    # 获取目录
+    contents = get_book_list(url, _type)
+    book_contents_name = book_name + "_contents.txt"
+    # 保存目录列表到文件
+    # contents_file = '../resource/book/sha_po_lang_list'
+    contents_file = os.path.join(save_path, book_contents_name, )
+    save_obj(contents, contents_file)
+    dict_to_json_write_file(contents, contents_file)
+    print('Get contents done .....\n')
+
+    # chapters = load_json(contents_file)
+    # chapters = load_obj(contents_file)
+    # print(chapters)
+
+    articles_file = os.path.join(save_path, book_name)
+    with open(articles_file, "a") as f:
+        for key in contents.keys():
+            f.write('\n' + key + '\n')
+            print('-' * 40 + key + '-' * 40 + '\n')
+            paragraphs = get_articles(contents[key], _type)
+            for line in paragraphs:
+                f.write(line + '\n')
+            print('-' * 40 + 'Write ' + key + 'Done' + '-' * 40 + '\n')
+            time.sleep(5)
 
