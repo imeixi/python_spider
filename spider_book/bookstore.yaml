@@ -22,10 +22,10 @@ all_books:
     "_type": 2
 
 # 保存地址
-save_path: "../resource/book/"
+save_path: "/home/workspace/python_spider/resource/book/"
 
 # 下载所有图书方式: 1,下载指定book  2, 下载所有图书
-download_all_books: false
+download_all_books: true
 
 # 指定下载图书名（名称必须包含在book_names中）
 custom_books:

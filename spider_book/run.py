@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-from spider_book.crawler import execute
 import yaml
 import os
-
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.getcwd(),'')))
+from spider_book.crawler import execute
 
 if __name__ == '__main__':
     # mo_du = 'https://www.luoxia.com/modu/'
