@@ -47,4 +47,4 @@ if __name__ == '__main__':
     # 下载图书
     for book_name in book_list:
         url = book_list[book_name]
-        execute(url, save_path, book_name)
+        execute(url, save_path, book_name, _type=2)

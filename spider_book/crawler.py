@@ -120,7 +120,7 @@ def get_articles(url, _type):
 
 
 # 保存文章到本地文件
-def execute(url, save_path, book_name, _type=2):
+def execute(url, save_path, book_name, _type):
     # 获取目录
     contents = get_book_list(url, _type)
     book_contents_name = book_name + "_contents"
