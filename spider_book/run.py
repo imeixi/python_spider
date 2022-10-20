@@ -3,8 +3,10 @@
 import yaml
 import os
 import sys
-sys.path.append(os.path.abspath(os.path.join(os.getcwd(),'')))
-from spider_book.crawler import execute
+
+sys.path.append(os.path.abspath(os.path.join(os.getcwd(), '')))
+
+from spider_book.crawler import execute, get_author_books, dict_to_json_write_file
 
 if __name__ == '__main__':
     # mo_du = 'https://www.luoxia.com/modu/'
@@ -25,24 +27,24 @@ if __name__ == '__main__':
         config = yaml.safe_load(f)
 
     # 读取所有配置项
+    base_url_zhenhun = config["url"]["zhenhun"]
     save_path = config["save_path"]
+    download_way = config["download_way"]
     all_books = config["all_books"]
-    download_all_books = config["download_all_books"]
     custom_books = config["custom_books"]
+    author_collection = config["author_collection"]
 
     # 判断是否下载所有书籍
-    if download_all_books:
-        book_list = all_books
-    else:
+    if download_way == 1:
         book_list = custom_books
+    elif download_way == 2:
+        book_list = all_books
+    elif download_way == 3:
+        book_list = get_author_books(author_collection, base_url_zhenhun)
+        author_books = os.path.join(save_path, "author_books", )
+        dict_to_json_write_file(book_list, author_books)
 
     # 下载图书
     for book_name in book_list:
-        url = all_books[book_name]['url']
-        _type = all_books[book_name]['_type']
-        print("url={}, book name = {}".format(url, book_name))
-        execute(url, _type, save_path, book_name)
-
-
-
-
+        url = book_list[book_name]
+        execute(url, save_path, book_name)

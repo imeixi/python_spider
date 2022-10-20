@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 import pickle
 import json
 import time
+from urllib.parse import urljoin
 
 
 # 默认格式.pkl
@@ -31,7 +32,42 @@ def load_json(name):
         return json.loads(fj.read())
 
 
-# _type 来自网站 1:落霞  2：镇魂
+# 获取作者作品
+def get_author_books(author_collection, base_url):
+    merge_dicts = dict()
+    for author in author_collection:
+        print(author)
+        book_dict = dict()
+        print("ready to get books ..... ")
+        # 默读 主页，获取每章链接
+        url = author_collection[author]
+        res = requests.get(url, verify=False)
+        print("received a response ..... ")
+        soup = BeautifulSoup(res.text, 'lxml')
+        # 镇魂 www.zhenhunxiaoshuo.com/
+        books_tbody = soup.find('article', {"class": "article-content"})
+        books_list = books_tbody.findAll('a')
+        for books_info in books_list:
+            book_name = None
+            book_url = None
+            try:
+                url_path = books_info['href']
+                book_url = urljoin(base_url, url_path)
+                print(book_url)
+                book_name = books_info.string + '_' + author
+                print(book_name)
+            except TypeError:
+                print(books_info)
+            except AttributeError:
+                print(books_info)
+            if book_name is not None and book_url is not None:
+                book_dict[book_name] = book_url
+        merge_dicts.update(book_dict)
+    print(merge_dicts)
+    return merge_dicts
+
+
+# 获取作品目录 _type 来自网站 1:落霞  2：镇魂
 def get_book_list(url, _type):
     chapter_dict = dict()
     print("ready to get contents ..... ")
@@ -63,6 +99,7 @@ def get_book_list(url, _type):
     return chapter_dict
 
 
+# 获取文章内容
 def get_articles(url, _type):
     contents = []
     # 默读 主页，获取每章链接
@@ -82,10 +119,11 @@ def get_articles(url, _type):
     return contents
 
 
-def execute(url, _type, save_path, book_name):
+# 保存文章到本地文件
+def execute(url, save_path, book_name, _type=2):
     # 获取目录
     contents = get_book_list(url, _type)
-    book_contents_name = book_name + "_contents.txt"
+    book_contents_name = book_name + "_contents"
     # 保存目录列表到文件
     # contents_file = '../resource/book/sha_po_lang_list'
     contents_file = os.path.join(save_path, book_contents_name, )
@@ -105,6 +143,6 @@ def execute(url, _type, save_path, book_name):
             paragraphs = get_articles(contents[key], _type)
             for line in paragraphs:
                 f.write(line + '\n')
-            print('-' * 40 + 'Write ' + key + 'Done' + '-' * 40 + '\n')
-            time.sleep(5)
+            print('-' * 40 + 'Write ' + key + ' Done' + '-' * 40 + '\n')
+            time.sleep(8)
 
