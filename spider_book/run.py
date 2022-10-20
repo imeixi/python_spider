@@ -9,14 +9,6 @@ sys.path.append(os.path.abspath(os.path.join(os.getcwd(), '')))
 from spider_book.crawler import execute, get_author_books, dict_to_json_write_file
 
 if __name__ == '__main__':
-    # mo_du = 'https://www.luoxia.com/modu/'
-    po_yun = 'https://www.luoxia.com/poyun/'
-    tun_hai_url = 'https://www.zhenhunxiaoshuo.com/poyun2tunhai/'
-    can_ci_pin = "https://www.luoxia.com/cancipin/"
-    sha_po_lang = "https://www.luoxia.com/shapolang/"
-    # 网站类型 1:落霞  2：镇魂
-    web_type = 1
-
     # 获取当前脚本所在文件夹路径
     curPath = os.path.dirname(os.path.realpath(__file__))
     # 获取yaml文件路径
@@ -47,4 +39,7 @@ if __name__ == '__main__':
     # 下载图书
     for book_name in book_list:
         url = book_list[book_name]
+        if book_name == "镇魂_priest":
+            url = "https://www.zhenhunxiaoshuo.com/lunhuigui/"
+        print("book_name={}, url={}".format(book_name, url))
         execute(url, save_path, book_name, _type=2)

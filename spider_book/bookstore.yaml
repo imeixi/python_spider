@@ -8,6 +8,7 @@ download_way: 1
 
 # 指定下载图书名（名称必须包含在book_names中）
 custom_books:
+  "镇魂": "https://www.zhenhunxiaoshuo.com/lunhuigui/"
   "图灵密码": "https://www.zhenhunxiaoshuo.com/tulingmima/"
 
 # 所有图书

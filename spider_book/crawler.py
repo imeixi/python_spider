@@ -123,18 +123,9 @@ def get_articles(url, _type):
 def execute(url, save_path, book_name, _type):
     # 获取目录
     contents = get_book_list(url, _type)
-    book_contents_name = book_name + "_contents"
-    # 保存目录列表到文件
-    # contents_file = '../resource/book/sha_po_lang_list'
-    contents_file = os.path.join(save_path, book_contents_name, )
-    save_obj(contents, contents_file)
-    dict_to_json_write_file(contents, contents_file)
     print('Get contents done .....\n')
-
-    # chapters = load_json(contents_file)
-    # chapters = load_obj(contents_file)
-    # print(chapters)
-
+    book_name = book_name + ".txt"
+    # 创建小说文件
     articles_file = os.path.join(save_path, book_name)
     with open(articles_file, "a") as f:
         for key in contents.keys():
