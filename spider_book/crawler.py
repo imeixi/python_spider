@@ -127,9 +127,9 @@ def execute(url, save_path, book_name, _type):
     # 获取目录
     contents = get_book_list(url, _type)
     logger.info('Get contents done .....\n')
-    book_name = book_name + ".txt"
+    book_name_txt = book_name + ".txt"
     # 创建小说文件
-    articles_file = os.path.join(save_path, book_name)
+    articles_file = os.path.join(save_path, book_name_txt)
     with open(articles_file, "a") as f:
         for key in contents.keys():
             f.write('\n' + key + '\n')
@@ -139,4 +139,8 @@ def execute(url, save_path, book_name, _type):
                 f.write(line + '\n')
             logger.info('-' * 40 + 'Write ' + key + ' Done' + '-' * 40 + '\n')
             time.sleep(2)
+    # 完成后重命名文件
+    articles_file_finish = os.path.join(save_path, book_name + "(完结).txt")
+    os.rename(articles_file, articles_file_finish)
+
 
