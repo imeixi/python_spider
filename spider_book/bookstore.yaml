@@ -8,6 +8,9 @@ download_way: 1
 
 # 指定下载图书名（名称必须包含在book_names中）
 custom_books:
+  "太岁(无cp)_priest": "https://www.zhenhunxiaoshuo.com/taisui/"
+  "狗_priest": "https://www.zhenhunxiaoshuo.com/gou/"
+  "锦瑟_priest": "https://www.zhenhunxiaoshuo.com/jinse/"
   "撒野_巫哲": "https://www.zhenhunxiaoshuo.com/saye/"
   "遇蛇_溯痕": "https://www.zhenhunxiaoshuo.com/yushe/"
   "碎玉投珠_北南": "https://www.zhenhunxiaoshuo.com/suiyutouzhu/"
@@ -26,10 +29,6 @@ custom_books:
   "将进酒_唐酒卿": "https://www.zhenhunxiaoshuo.com/qiangjinjiu/"
   "法外之徒_卡比丘": "https://www.zhenhunxiaoshuo.com/fawaizhitu/"
   "捡星星_不问三九": "https://www.zhenhunxiaoshuo.com/jianxingxing/"
-  "太岁(无cp)_priest": "https://www.zhenhunxiaoshuo.com/taisui/"
-  "狗_priest": "https://www.zhenhunxiaoshuo.com/gou/"
-
-
 
 # 所有图书
 all_books:
