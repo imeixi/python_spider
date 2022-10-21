@@ -3,6 +3,7 @@
 import yaml
 import os
 import sys
+from loguru import logger
 
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), '')))
 
@@ -20,7 +21,8 @@ if __name__ == '__main__':
 
     # 读取所有配置项
     base_url_zhenhun = config["url"]["zhenhun"]
-    save_path = config["save_path"]
+    save_path = os.path.abspath(config["save_path"])
+    print(save_path)
     download_way = config["download_way"]
     all_books = config["all_books"]
     custom_books = config["custom_books"]
@@ -36,10 +38,17 @@ if __name__ == '__main__':
         author_books = os.path.join(save_path, "author_books", )
         dict_to_json_write_file(book_list, author_books)
 
+    # 获取已经下载文件目录
+    for root, dirs, files in os.walk(save_path):
+        logger.success(files)
+
     # 下载图书
     for book_name in book_list:
+        if book_name + ".txt" in files:
+            logger.success("%s is saved" % book_name)
+            continue
         url = book_list[book_name]
         if book_name == "镇魂_priest":
             url = "https://www.zhenhunxiaoshuo.com/lunhuigui/"
-        print("book_name={}, url={}".format(book_name, url))
+        # logger.info("book_name={}, url={}".format(book_name, url))
         execute(url, save_path, book_name, _type=2)

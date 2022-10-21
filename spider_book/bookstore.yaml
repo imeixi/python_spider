@@ -4,7 +4,7 @@ url:
   zhenhun: "https://www.zhenhunxiaoshuo.com"
 
 # 下载所有图书方式: 1,下载指定book（custom_books）  2, 下载所有图书 （all_books） 3、按作者下载
-download_way: 1
+download_way: 3
 
 # 指定下载图书名（名称必须包含在book_names中）
 custom_books:
@@ -42,7 +42,8 @@ author_collection:
   "非天夜翔": "https://www.zhenhunxiaoshuo.com/非天夜翔"
 
 # 保存地址
-save_path: "/home/workspace/python_spider/resource/book/"
+#save_path: "/home/workspace/python_spider/resource/book/"
+save_path: "../resource/book/"
 
 
 
