@@ -8,12 +8,34 @@ download_way: 1
 
 # 指定下载图书名（名称必须包含在book_names中）
 custom_books:
-  "镇魂": "https://www.zhenhunxiaoshuo.com/lunhuigui/"
-  "图灵密码": "https://www.zhenhunxiaoshuo.com/tulingmima/"
+  "撒野_巫哲": "https://www.zhenhunxiaoshuo.com/saye/"
+  "遇蛇_溯痕": "https://www.zhenhunxiaoshuo.com/yushe/"
+  "碎玉投珠_北南": "https://www.zhenhunxiaoshuo.com/suiyutouzhu/"
+  "刺青_不问三九": "https://www.zhenhunxiaoshuo.com/ciqing/"
+  "御者_折一枚针": "https://www.zhenhunxiaoshuo.com/yuzhe/"
+  "最爱你的那十年_无仪宁死": "https://www.zhenhunxiaoshuo.com/zuiainidenashinian/"
+  "竹木狼马_巫哲": "https://www.zhenhunxiaoshuo.com/zhumulangma/"
+  "铜钱龛世_木苏里": "https://www.zhenhunxiaoshuo.com/tongqiankanshi/"
+  "哏儿_南北逐风": "https://www.zhenhunxiaoshuo.com/gener/"
+  "白日事故_高台树色": "https://www.zhenhunxiaoshuo.com/bairishigu/"
+  "穿堂惊掠琵琶声_高台树色": "https://www.zhenhunxiaoshuo.com/chuantangjingluepipasheng/"
+  "君有疾否_如似我闻": "https://www.zhenhunxiaoshuo.com/junyoujifou/"
+  "养父_水千丞": "https://www.zhenhunxiaoshuo.com/yangfu/"
+  "狼行成双_巫哲": "https://www.zhenhunxiaoshuo.com/langxingchengshuang/"
+  "思绪万千_高台树色": "https://www.zhenhunxiaoshuo.com/sixuwanqian/"
+  "将进酒_唐酒卿": "https://www.zhenhunxiaoshuo.com/qiangjinjiu/"
+  "法外之徒_卡比丘": "https://www.zhenhunxiaoshuo.com/fawaizhitu/"
+  "捡星星_不问三九": "https://www.zhenhunxiaoshuo.com/jianxingxing/"
+  "太岁(无cp)_priest": "https://www.zhenhunxiaoshuo.com/taisui/"
+  "狗_priest": "https://www.zhenhunxiaoshuo.com/gou/"
+
+
 
 # 所有图书
 all_books:
-  "poyun2tunhai": "https://www.zhenhunxiaoshuo.com/poyun2tunhai"
+  "吞海": "https://www.zhenhunxiaoshuo.com/poyun2tunhai"
+  "镇魂": "https://www.zhenhunxiaoshuo.com/lunhuigui/"
+  "图灵密码": "https://www.zhenhunxiaoshuo.com/tulingmima/"
 
 # 作者 作品集
 author_collection:
