@@ -50,5 +50,5 @@ if __name__ == '__main__':
         url = book_list[book_name]
         if book_name == "镇魂_priest":
             url = "https://www.zhenhunxiaoshuo.com/lunhuigui/"
-        # logger.info("book_name={}, url={}".format(book_name, url))
+        logger.info("book_name={}, url={}".format(book_name, url))
         execute(url, save_path, book_name, _type=2)
