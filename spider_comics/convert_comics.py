@@ -32,7 +32,7 @@ def main():
     args = parser.parse_args()
     
     # 漫画目录路径
-    comics_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "白鹤三绝")
+    comics_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "白鹤三绝-番外篇")
     
     # 创建转换器
     converter = ComicsConverter(comics_dir)
